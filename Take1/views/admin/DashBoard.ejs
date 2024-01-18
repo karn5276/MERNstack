@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table with CSS</title>
+    <style>
+        table {
+            border-collapse:collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 2px solid black;
+            text-align: center;
+            color: #5C5C5C;
+            max-width: 363px;
+            max-height: 92px;
+        }
+
+        th {
+            height: 80px;
+            background-color: #EAECFF;
+            
+            
+        }
+
+        .btn{
+            background-color:white;
+            border-radius: 5px; 
+            color: blue; 
+            border: 2px solid blue;
+            padding:15px 20px;
+            font-weight: bold;
+            cursor: pointer;
+
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div>
+        <form action="/createUser">
+            <button class="btn" > < Back</button>
+        </form>
+    </div>
+    <div style="margin-top: 7%;">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>user ID</th>
+                    <th>Name</th>
+                    <th>Photo</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (let data of docs) { %>
+                    <tr>
+                        <td>3425</td>
+                        
+                        <td><%= data.name %></td>
+                        
+                        <td><img style="width: 77PX; height: 80PX;" src="<%=data.image.url%>"></td>
+                        
+                        <td style="width: 363px;"><button style="cursor: pointer; padding:15px 20px; border-radius: 5px; border: none; background-color: blue; color: white;">Done</button> <button class="btn" style="margin-left: 10px;">Delete</button></td>
+                       
+
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    min-height: 100vh;
+}
+
+.section {
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.image-section {
+    grid-column: span 7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #050259 !important;
+    /* background: linear-gradient(180deg, #050259 0%, rgba(5, 2, 89, 0) 100%); */
+
+}
+
+.image-section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.login-section {
+    grid-column: span 5;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-section form {
+    max-width: 300px;
+    width: 100%;
+}
+
+.login-section form input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px;
+    margin-top: 10px;
+
+}
+
+.login-section form button {
+    width: 105%;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: blue;
+    color: white;
+}
+
+.image-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #e0e0e0;
+}
+
+.Admin-section{
+    grid-column: span 6 !important;
+    background-color: white !important;
+}
+
+.Admin-section form label{
+    margin-top: 10px !important;
+    color: #646464;
+}
+.Admin-section form input{
+    margin-bottom: 10px;
+    margin-top: 0px !important;
+    /* border: 1px solid #646464; */
+    border: 1px solid #CDCDCD;
+}
+
+
+@media screen and (max-width: 768px) {
+    body {
+        grid-template-columns: 1fr;
+    }
+
+    .image-section,
+    .login-section {
+        grid-column: span 12;
+    }
+
+   #admin{
+    margin-top: -84px;
+    
+   }
+}
