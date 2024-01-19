@@ -1,0 +1,126 @@
+body {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.view-div button,
+#back-btn {
+    margin-right: 10px;
+    color: blue;
+    border: 1px solid blue;
+    padding: 10px;
+    max-width: 128px;
+    max-width: 59px;
+    border-radius: 5px;
+    min-width: 90px;
+    min-height: 45px;
+    font-size: 14px;
+    margin-top: 10px;
+    background-color: white !important;
+    cursor: pointer;
+}
+
+.profile-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.profile-div form {
+    margin-top: 200px;
+
+}
+
+.profile-div form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #CDCDCD;
+    border-radius: 5px;
+}
+
+.profile-div form label {
+    margin-top: 10px;
+    color: #CDCDCD;
+}
+
+.profile-div form button {
+    background-color: blue;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #CDCDCD;
+    width: 105%;
+    margin-top: 30px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.active{
+    background-color: rgba(0, 0, 0, 0.2);
+    filter: blur(100%);
+     /* background-color: red; */
+}
+
+.active1{
+    filter: blur(1px);
+   
+}
+
+.active2{
+    color: black;
+    font-weight: bold;
+}
+
+#status-div {
+    max-width: 609px;
+    background-color: white;
+    max-height: 958px;
+    Border: 1px;
+    width: 47%;
+    height: 100vh;
+    position: absolute;
+    right: 0;
+    left: 813px;
+    top: 0;
+    z-index: 100;
+    display: none;
+}
+
+#container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 80px;
+    padding: 10px;
+}
+
+#container label,
+input {
+    width: 60%;
+    color: #CDCDCD;
+    max-width: 462px;
+    max-height: 59px;
+}
+
+#container input {
+    height: 35px;
+    border: 1px solid rgba(205, 205, 205, 1);
+    border-radius: 1px;
+}
+
+#container input::placeholder {
+    color: #CDCDCD;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+#container img {
+    max-width: 463px;
+    max-height: 477.93px;
+    width: 60%;
+    height: 330px;
+}

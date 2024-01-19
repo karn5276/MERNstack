@@ -5,67 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-        .view-div button {
-            margin-right: 10px;
-            color: blue;
-            border: 1px solid blue;
-            padding: 10px;
-            max-width: 128px;
-            max-width: 59px;
-            border-radius: 5px;
-            min-width: 90px;
-            min-height: 45px;
-        }
+    <link rel="stylesheet" href="/css/user.css">
 
-        .profile-div {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        .profile-div form {
-            margin-top: 200px;
-
-        }
-
-        .profile-div form input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #CDCDCD;
-            border-radius: 5px;
-        }
-
-        .profile-div form label {
-            margin-top: 10px;
-            color: #CDCDCD;
-        }
-
-        .profile-div form button {
-            background-color: blue;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #CDCDCD;
-            width: 105%;
-            margin-top: 30px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-    </style>
 </head>
 
 <body>
     <div style="text-align: end;" class="view-div">
-        <button>View</button>
+        <button id="view-btn">View</button>
     </div>
 
-    <div class="profile-div">
-        <form action="/profileUpload" method="POST" enctype="multipart/form-data">
+   
+
+    <div class="profile-div" id="profile">
+        <form action="/profileUpload" method="POST" enctype="multipart/form-data" id="form-container">
          
-            <label for="username">Name</label><br> 
-            <input name="profile[username]" type="text" required>
+            <label  for="username">Name</label><br> 
+            <input name="profile[username]" type="text" id="username" required>
             <br><br>
 
             <label for="image">photo</label><br>
@@ -75,6 +30,22 @@
             <button>Upload</button>
         </form>
     </div>
+
+    <div id="status-div">
+        <div style="text-align: end;"><button id="back-btn">Back</button></div>
+        <div id="container">
+            <label for="">Name</label>
+            <input type="text" name="" id="" placeholder="Ramesh Kumar" disabled><br>
+            <label for="">Photo</label>
+            <img src="http://localhost:8000/images/loginImage.jpg" alt="">
+        </div>
+    </div>
+
+   
+
+    <script src="/js/script.js"></script>
+
 </body>
+
 
 </html>

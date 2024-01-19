@@ -6,6 +6,7 @@ body {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     min-height: 100vh;
+    background-color: #f0f0f0;
 }
 
 .section {
@@ -19,7 +20,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #050259 !important;
+    background-color: #0d0c39 !important;
+
     /* background: linear-gradient(180deg, #050259 0%, rgba(5, 2, 89, 0) 100%); */
 
 }
@@ -27,7 +29,6 @@ body {
 .image-section img {
     max-width: 100%;
     height: auto;
-    border-radius: 8px;
 }
 
 .login-section {
@@ -71,21 +72,78 @@ body {
     background-color: #e0e0e0;
 }
 
-.Admin-section{
+.Admin-section {
     grid-column: span 6 !important;
     background-color: white !important;
 }
 
-.Admin-section form label{
+.Admin-section form label {
     margin-top: 10px !important;
     color: #646464;
 }
-.Admin-section form input{
+
+.Admin-section form input {
     margin-bottom: 10px;
     margin-top: 0px !important;
     /* border: 1px solid #646464; */
     border: 1px solid #CDCDCD;
 }
+
+#userId-div{
+    background: rgba(234, 236, 255, 1);
+}
+
+
+
+#userId-div div h2{
+    text-align: center;
+    color: #646464;
+}
+#userId-div div div{
+    max-width: 597px;
+    max-height:173px;
+    width: 500px;
+    height: 150px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(234, 236, 255, 1);
+    position: relative;
+}
+
+#userId-div div div p{
+    position: absolute;
+    top: 0;
+    right: 13px;
+    background-color: blue;
+    border-radius: 50%;
+    padding: 4px;
+    color: white;
+}
+#userId-div div div input{
+    max-width: 462px;
+    max-height: 59px;
+    width: 400px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+#userId-div div form{
+    text-align: end;
+}
+
+#userId-div div form button{
+    background-color: blue;
+    color: white;
+    padding: 13px 25px;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
 
 
 @media screen and (max-width: 768px) {
@@ -93,13 +151,28 @@ body {
         grid-template-columns: 1fr;
     }
 
+    .image-section {
+        margin-top: 40px;
+        max-height: 280px;
+    }
+
+    .image-section img {
+        max-width: 280px;
+    }
+
     .image-section,
     .login-section {
         grid-column: span 12;
     }
 
-   #admin{
-    margin-top: -84px;
-    
-   }
+    /* .login-section div {
+        margin-top: -100px;
+        max-width: 399.42px;
+        max-height: 334px;
+    } */
+
+    #admin {
+        margin-top: -84px;
+
+    }
 }

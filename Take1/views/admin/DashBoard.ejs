@@ -69,7 +69,16 @@
                         
                         <td><img style="width: 77PX; height: 80PX;" src="<%=data.image.url%>"></td>
                         
-                        <td style="width: 363px;"><button style="cursor: pointer; padding:15px 20px; border-radius: 5px; border: none; background-color: blue; color: white;">Done</button> <button class="btn" style="margin-left: 10px;">Delete</button></td>
+                        <td style="width: 363px; position: relative;">
+                            <form action="" style="width: 128px; height: 58px;">
+                                <button class="btn" style="border: none; background-color: blue !important; color: white !important;">Done</button> 
+                            </form>
+                            
+                            <form style="width: 128px; height: 58px; position: absolute; top: 15%; left: 30%;" action="/deleteUser/<%=data._id%>?_method=DELETE" method="post">
+                                <button class="btn" style="margin-left: 10px;">Delete</button>
+                            </form>
+                        
+                        </td>
                        
 
                     </tr>

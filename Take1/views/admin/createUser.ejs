@@ -25,8 +25,22 @@
         </form>
     </div>
 
-    <div class="section image-section Admin-section">
-       
+    <div class="section image-section Admin-section" id="userId-div">
+       <div>
+        <h2>View User</h2>
+        <% let counter=1 %>
+        <% for(let data of docs){%>
+
+        <div id="user1">
+            <p><%=counter++%></p>
+            <input type="text" disabled placeholder="<%= data.userId %>">
+        </div>
+
+        <% } %>
+        <form action="/viewUser" method="get">
+            <button>View</button>
+        </form>
+       </div>
     </div>
 
 </body>
