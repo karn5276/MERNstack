@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 
 const profileSchema= new mongoose.Schema({
-    
+    userid:{
+        type:Number
+    },
     name:{
         type:String,
         required:true
@@ -9,7 +11,6 @@ const profileSchema= new mongoose.Schema({
     image:{
         url:String,
         filename:String,
-        // default:"./images/default_image.jpg"
     },
     createdAt: {
         type: Date,

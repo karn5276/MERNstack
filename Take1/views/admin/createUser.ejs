@@ -29,12 +29,12 @@
        <div>
         <h2>View User</h2>
         <% let counter=1 %>
-        <% for(let data of docs){%>
+        <% for (let data of userdata) { %>
 
-        <div id="user1">
-            <p><%=counter++%></p>
-            <input type="text" disabled placeholder="<%= data.userId %>">
-        </div>
+            <div id="user1">
+                <p><%=counter++%></p>
+                <input type="text" disabled placeholder="<%= data.userid %>">
+            </div>
 
         <% } %>
         <form action="/viewUser" method="get">

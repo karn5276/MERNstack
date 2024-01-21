@@ -45,7 +45,7 @@
 
 <body>
     <div>
-        <form action="/createUser">
+        <form action="/createUserNew" method="GET">
             <button class="btn" > < Back</button>
         </form>
     </div>
@@ -63,7 +63,7 @@
             <tbody>
                 <% for (let data of docs) { %>
                     <tr>
-                        <td>3425</td>
+                        <td><%= data.userid %></td>
                         
                         <td><%= data.name %></td>
                         

@@ -17,8 +17,9 @@
    
 
     <div class="profile-div" id="profile">
-        <form action="/profileUpload" method="POST" enctype="multipart/form-data" id="form-container">
-         
+        <% for(let data of userData){ %>
+        <form action="/profileUpload/<%=data._id%>" method="POST" enctype="multipart/form-data" id="form-container">
+            <p><%=data._id%></p>
             <label  for="username">Name</label><br> 
             <input name="profile[username]" type="text" id="username" required>
             <br><br>
@@ -29,6 +30,7 @@
             
             <button>Upload</button>
         </form>
+        <% } %>
     </div>
 
     <div id="status-div">
