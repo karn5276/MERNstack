@@ -51,9 +51,14 @@ router.post("/profileUpload/:id",upload.single('profile[image]'),async(req,res)=
             filename:req.file.filename,
         }
     });
-
-
 });
+
+// status
+
+router.get("/status/:id",async(req,res)=>{
+    let {id}=req.params;
+    console.log(id);
+})
 
 
 

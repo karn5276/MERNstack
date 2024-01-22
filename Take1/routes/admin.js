@@ -3,6 +3,7 @@ const router = express.Router();
 const adminLoginSchema = require("../models/AdminLogin");
 const userSchema = require("../models/User");
 const userLoginSchema = require("../models/userLogin");
+const doneUserSchema = require("../models/DoneUser");
 
 
 
@@ -24,6 +25,17 @@ router.get("/createUserNew",async(req,res)=>{
             console.error('Error fetching documents:', err);
         });
 
+});
+
+// done users
+router.post("/doneusers/:id",async(req,res)=>{
+    console.log(req.params);
+    let {id}=req.params;
+    const doneUserData = await userSchema.findByIdAndDelete(id);
+    console.log(doneUserData);
+
+    await doneUserSchema.insertMany(doneUserData);
+    res.redirect("/viewUser");
 });
 
 router.get("/adminLogin", (req, res) => {

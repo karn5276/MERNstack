@@ -11,7 +11,14 @@
 
 <body>
     <div style="text-align: end;" class="view-div">
-        <button id="view-btn">View</button>
+        <% for(let data of userData){ %>
+
+        <form action="/status/<%=data._id%>" method="get">
+            <button id="view-btn">View</button>
+        </form>
+
+        <% } %>
+
     </div>
 
    
