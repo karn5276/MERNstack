@@ -26,6 +26,12 @@ const userSchema = new mongoose.Schema({
         enum:["Admin","User","Instructor"],
         required:true
     },
+    token:{
+        type:String,
+    },
+    resetPasswordExpires:{
+        type:Date,
+    },
     additionalDetails:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Profile"  // this is model name
