@@ -89,6 +89,29 @@ exports.createCourse=async(req,res)=>{
 
     }
     catch(error){
+        return res.status(501).json({
+            success:false,
+            message:"something went wrong of creating course"
+        })
+    }
+}
 
+// fetch all courses 
+
+exports.showAllCourses = async(req,res)=>{
+    try{
+        const allCourses = await Course.find({});
+
+        return res.status(200).json({
+            success:true,
+            message:"All Course Data Fetch Successfully",
+            data:allCourses
+        })
+    }
+    catch(error){
+        return res.status(501).json({
+            success:false,
+            message:"something went wrong of fetching all courses data"
+        })
     }
 }

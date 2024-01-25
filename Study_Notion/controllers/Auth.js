@@ -138,7 +138,7 @@ exports.signUp = async(req,res)=>{
         var hashedPassword =bcrypt.hashSync(password, salt);
 
         // create additional details
-        // here we are created initally null profile letter when user wants to enter his details then we will modify it.
+        // here we are created initally null profile letter when user wants to enter his details then we will update it.
         const profileDetails= await profileSchema.create({
             gender:null,
             dateOfBirth:null,
