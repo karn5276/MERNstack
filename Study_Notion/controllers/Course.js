@@ -1,13 +1,14 @@
 const User = require("../models/User");
-const Tag = require("../models/Tag");
+// const Tag = require("../models/Tag");
 const Course=require("../models/Course");
 const {uploadImageToCloudinary} =require("../utils/imageUploader");
-const { isInstructor } = require("../middlewares/auth");
+// const { isInstructor } = require("../middlewares/auth");
+const Category=require("../models/Category");
 
 exports.createCourse=async(req,res)=>{
     try{
         // fetch data 
-        const {courseName,courseDescription,price,tag,whatYouWillLearn} = req.body;
+        const {courseName,courseDescription,price,tag,whatYouWillLearn,category,} = req.body;
 
         // fetch thumbnail image
         const thumbnail=req.files.thumbnailImage;
@@ -36,15 +37,24 @@ exports.createCourse=async(req,res)=>{
         // check tag is valid or not
         // note: in course schema we have tag objectId means tag which is come in req body is an ID.
 
-        const tagDetails=await Tag.findById({tag});
-        console.log("tagDetails: ",tagDetails);
+        // const tagDetails=await Tag.findById({tag});
+        // console.log("tagDetails: ",tagDetails);
 
-        if(!tagDetails){
-            return res.status(401).json({
-                success:false,
-                message:"tag is not exit"
-            })
-        }
+        // if(!tagDetails){
+        //     return res.status(401).json({
+        //         success:false,
+        //         message:"tag is not exit"
+        //     })
+        // }
+
+        // Check if the tag given is valid
+		const categoryDetails = await Category.findById(category);
+		if (!categoryDetails) {
+			return res.status(404).json({
+				success: false,
+				message: "Category Details Not Found",
+			});
+		}
 
         // upload image to the cloudinary
 
@@ -59,7 +69,8 @@ exports.createCourse=async(req,res)=>{
             whatYouWillLearn,
             instructor:InstructorDetails._id,
             thumbnail:thumbnailImage.secure_url,
-            tag:tagDetails._id
+            tag:tag,
+            category:categoryDetails._id
         });
 
         // insert courseId to the user schema b'coz this schema is same for admin , instructor , and student and when new course is created there is instructor also have.

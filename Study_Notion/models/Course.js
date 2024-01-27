@@ -29,6 +29,15 @@ const courseSchema = new mongoose.Schema({
             ref:"Section"        
         }
     ],
+    tag: {
+		type: [String],
+		required: true,
+	},
+    category: {
+		type: mongoose.Schema.Types.ObjectId,
+		// required: true,
+		ref: "Category",
+	},
     ratingAndReviews:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"RatingAndReview"  
@@ -45,12 +54,12 @@ const courseSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    studentEnroll:[
+    studentsEnrolled:[
         {
             type:mongoose.Schema.Types.ObjectId,
             ref:"User",
             required:true
-        }
+        },
     ]
 });
 
