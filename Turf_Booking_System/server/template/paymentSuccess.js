@@ -67,7 +67,7 @@ exports.paymentSuccess = (amount, paymentId, orderId, name,lastname) => {
     
     <body>
         <div class="container">
-            <a href="https://studynotion-edtech-project.vercel.app"><img class="logo" src="https://i.ibb.co/7Xyj3PC/logo.png"
+            <a href="https://studynotion-edtech-project.vercel.app"><img class="logo" src="https://turfxl.in/assets/Logo.png"
                     alt="StudyNotion Logo"></a>
             <div class="message">
             Your payment of ₹${amount} has been successfully received.
@@ -75,7 +75,7 @@ exports.paymentSuccess = (amount, paymentId, orderId, name,lastname) => {
             <div class="body">
                 <p>Dear ${name} ${lastname},</p>
                 <p>
-                    Thank you for purchasing the course. Your payment of ₹${amount} has been successfully received.
+                    Thank you for booking the turf. Your payment of ₹${amount} has been successfully received.
                 </p>
                 <p>
                     Your payment ID is <span class="highlight">${paymentId}</span> and your order ID is <span
@@ -83,7 +83,7 @@ exports.paymentSuccess = (amount, paymentId, orderId, name,lastname) => {
                 </p>
             </div>
             <div class="support">If you have any questions or need assistance, please feel free to reach out to us at <a
-                    href="mailto:info@studynotion.com">info@studynotion.com</a>. We are here to help!</div>
+                    href="mailto:info@studynotion.com">info@turfxl.com</a>. We are here to help!</div>
         </div>
     </body>
     

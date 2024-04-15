@@ -86,7 +86,7 @@ module.exports.signUp = async (req, res) => {
             email,
             password,
             otp,
-            contactNo,
+            // contactNo,
             accountType
         } = req.body;
 
@@ -147,7 +147,7 @@ module.exports.signUp = async (req, res) => {
             password: hashedPassword,
             email,
             // contactNo,
-            accountType
+            accountType,
         });
 
         // return response
@@ -208,7 +208,7 @@ exports.login = async (req, res) => {
 
             // Save token to user document in database
             user.token = token;
-            user.password = undefined;
+            user.password = undefined; // we are sending user in cookies that why we have set password to undefined but in database that password is not undefined.
             // Set cookie for token and return success response
             const options = {
                 expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
@@ -246,3 +246,63 @@ exports.login = async (req, res) => {
 }
 
 
+// change password 
+
+module.exports.changePassword = async(req,res)=>{
+    try{
+        const id=req.user.id;
+        
+        const user = await UserSchema.findById({_id:id});
+
+        if(!user){
+            return res.status(401).json({
+                success:false,
+                message:"User Not Exit"
+            })
+        }
+
+        const {oldPassword,newPassword}=req.body;
+
+        // validate old password
+        const ispasswordMatch = bcrypt.compare(oldPassword,user.password);
+
+        if(!ispasswordMatch){
+            return res.status(401).json({
+                success:false,
+                message:"Password Is Incorrect"
+            })
+        }
+
+        if(oldPassword==newPassword){
+            return res.status(400).json({
+                success:false,
+                message:"Oldpassword Not Same As Newpassword"
+            })
+        }
+
+        // update password
+
+        const salt = bcrypt.genSaltSync(10);
+        const hashedPassword= bcrypt.hashSync(newPassword,salt);
+
+        const userDetails = await UserSchema.findByIdAndUpdate({_id:id},{password:hashedPassword},{new:true});
+
+        // return res
+
+        return res.status(200).json({
+            success:true,
+            message:"Password Updated successfully"
+        })
+
+
+
+
+    }
+    catch(error){
+        console.log(error);
+        return res.status(501).json({
+            success:false,
+            message:"Password Updation Failed"
+        })
+    }
+}

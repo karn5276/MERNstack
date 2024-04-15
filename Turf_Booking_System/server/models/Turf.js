@@ -1,25 +1,30 @@
 const mongoose  = require("mongoose");
 
 const turfSchema = new mongoose.Schema({
-    name:{
+    turfName:{
         type:String,
         trim:true,
     },
-    description:{
+    turfShortDesc:{
         type:String,
         trim:true,
     },
-    image:[{ // we have a functionality to add more than one images
-        url:String,
-    }],
 
-    // reviews:[  // one turf have multiple reviews
-    //     {
-    //         type:mongoose.Schema.Types.ObjectId,
-    //         ref:"RatingAndReview",
-    //         required:true,
-    //     }
-    // ],
+    owner: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "User",
+	},
+
+    image:{ // we have a functionality to add more than one images
+        type:String,
+    },
+
+    reviews:[  // one turf have multiple reviews
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"RatingAndReview",
+        }
+    ],
     area:{
         type:String,
     },
@@ -27,15 +32,24 @@ const turfSchema = new mongoose.Schema({
         type:String,
         trim:true,
     },
-    pincode:{
+    pinCode:{
         type:Number,
         require:true,
     },
-    // priceTime:[{
-    //     type:mongoose.Schema.Types.ObjectId,
-    //     ref:"Pricetime",
-    //     required:true,
-    // }]
+    priceTime:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Pricetime"
+    },
+    createdAt:{
+        type:Date,
+        default:Date.now,
+    },
+    price:{
+        type:String
+    },
+    time:{
+        type:String
+    }
 });
 
 const Turf = mongoose.model("Turf",turfSchema);

@@ -14,6 +14,10 @@ const ratingAndReviewSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"User"
     },
+    turf:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Turf"
+    },
     createdAt:{
         type:Date,
         default: Date.now()

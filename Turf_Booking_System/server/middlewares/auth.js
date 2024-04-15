@@ -6,13 +6,11 @@ const userSchema =require("../models/User");
 module.exports.auth=async(req,res,next)=>{
     try{
         // extract token
-        console.log("activated")
-        console.log("cookie: ",req.cookies);
-        console.log("body: ",req.body);
+       
 
         const token = req.cookies.token 
                         || req.body.token 
-                        // || req.header("Authorisation").replace("Bearer ", "");
+                        || req.header("Authorisation").replace("Bearer ", "");
 
         console.log("token: ",token);
         // if token missing return res
@@ -65,9 +63,10 @@ module.exports.validateUser = (req,res,next)=>{
 
 // is student
 
-module.exports.isStudent = async(req,res,next)=>{
+module.exports.isUser = async(req,res,next)=>{
     try{
-        if(req.user.accountType!="Student"){
+        console.log("req.body:",req.user.accountType);
+        if(req.user.accountType!="User"){
             return res.status.json({
                 success:false,
                 message:"This is protected route only for student"
@@ -85,12 +84,12 @@ module.exports.isStudent = async(req,res,next)=>{
 
 // is instructor
 
-module.exports.isInstructor = async(req,res,next)=>{
+module.exports.isOwner = async(req,res,next)=>{
     try{
-        if(req.user.accountType!="Instructor"){
+        if(req.user.accountType!="Owner"){
             return res.status.json({
                 success:false,
-                message:"This is protected route only for Instructor"
+                message:"This is protected route only for Owner"
             })
         }
         next();
@@ -98,7 +97,7 @@ module.exports.isInstructor = async(req,res,next)=>{
     catch(error){
         return res.status(500).json({
             success:false,
-            message:"something went wrong while validating Instructor"
+            message:"something went wrong while validating Owner"
         })
     }
 }
