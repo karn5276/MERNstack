@@ -8,6 +8,7 @@ exports.contactUs = async (req, res) => {
       message: "All Fields are required",
     });
   }
+
   try {
     const data = {
       firstName,
@@ -16,6 +17,7 @@ exports.contactUs = async (req, res) => {
       message,
       phoneNo: `${phoneNo ? phoneNo : "null"}`,
     };
+    
     const info = await mailSender(
       process.env.CONTACT_MAIL,
       "Enquery",

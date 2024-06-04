@@ -6,7 +6,8 @@ exports.auth=async(req,res,next)=>{
     try{
         // extract token
 
-        let token=req.body.token ;
+        let token=req.body.token || req.cookies.token;
+        
         console.log(token);
         // if token missing return res
         if(!token){

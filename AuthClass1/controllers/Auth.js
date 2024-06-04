@@ -108,12 +108,22 @@ exports.login=async(req,res)=>{
                 httpOnly:true
             };
             
+            //  this is for req.body.cookies
             res.cookie("token",token,options).status(200).json({
                 success:true,
                 token,
                 user,
                 message:"logged in Successfully"
             });
+
+            // this is for req.body.token
+
+            // res.status(200).json({
+            //     success:true,
+            //     token,
+            //     user,
+            //     message:"logged in Successfully"
+            // });
         }
         else{
             return res.status(401).json({
