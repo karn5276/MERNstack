@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input,textarea,#countryCode{
+    border: 1px solid black !important;
+    border-radius: 5px !important;
+}
+
+#cancle,#upload{
+    border: 1px solid black;
+}
+
+.mobNav {
+    transition: all;
+    transition: 500ms;
+    transform: translatex(100vw);
+  }
+  
+  .mobNav.navshow {
+    transition: all;
+    transition: 500ms;
+    transform: translateX(0vw);
+  }
+
+  html, body{
+    overflow-x: hidden;
+    overscroll-behavior: auto;
+}
+
+.glass{
+    background: rgba(255, 255, 255, 0);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+ }
+
+ .glass2{
+    /* From https://css.glass */
+  background: rgba(223, 226, 232, 0.75);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(7, 7, 7, 0.1);
+  backdrop-filter: blur(7.3px);
+  -webkit-backdrop-filter: blur(7.3px);
+  border: 1px solid rgba(13, 18, 30, 0.3);
+  }
+
+
+  .swiper-button-prev {
+    /* transform: translateY(-350%); */
+    color: black !important;
+  }
+  
+  .swiper-button-next {
+    /* transform: translateY(-350%); */
+   color: black !important;
+  }
+  
+  .swiper-pagination-bullet-active {
+    background-color: rgb(186, 32, 32) !important;
+  }
+  .swiper-pagination-bullet{
+    transform: translateY(180%);
+    background-color: rgb(255, 255, 255) !important;
+  }
+
+
+ 
