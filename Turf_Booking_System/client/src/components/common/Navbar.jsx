@@ -48,7 +48,7 @@ export default function Navbar() {
                 <div className='flex w-11/12 max-w-Content justify-between items-center'>
                     {/* logo image  */}
                     <Link to='/login'>
-                        <img className='md:w-[160] md:h-[42]' src={logo} width={40} alt="Turf" height={38}></img>
+                        <img className='md:w-[160] md:h-[42]' src={logo} width={140} alt="Turf" height={38}></img>
                     </Link>
 
 
