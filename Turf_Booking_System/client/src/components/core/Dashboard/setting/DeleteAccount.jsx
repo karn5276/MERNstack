@@ -11,8 +11,8 @@ export default function DeleteAccount() {
     const dispatch = useDispatch();
     //delete account
     const onDeleteAccount = () => {
-      if(window.confirm
-        ("Are you sure you want to delete your account?")){
+      if(window.confirm("Are you sure you want to delete your account?"))
+        {
           deleteAccountPermantly(token,dispatch,navigate);
         }
   

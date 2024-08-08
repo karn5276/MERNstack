@@ -17,7 +17,7 @@ const turfRoute = require("./routes/Turf");
 const profileRoute = require("./routes/Profile");
 const paymentRoutes=require("./routes/Payments");
 
-const port = process.env.PORT;
+const port = process.env.PORT || 4050;
 const cookieParser=require("cookie-parser");
 
 app.use(cookieParser());

@@ -10,7 +10,7 @@ const MyTurfs = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { token } = useSelector((state) => state.auth);
-    const [courses, setCourses] = React.useState(null);
+    const [courses, setCourses] = useState(null);
     const [loading, setloading] = useState(false);
     const fetchedCourses = async () => {
         setloading(true);

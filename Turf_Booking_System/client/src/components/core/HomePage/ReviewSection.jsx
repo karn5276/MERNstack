@@ -9,6 +9,7 @@ export default function ReviewSection() {
 
     const [Reviews, setReviews] = useState([]);
     const [Loading, setLoading] = useState(true);
+    const [isdata,setIsdata]=useState(false);
     const {name}=useSelector((state)=>state.search);
 
     useEffect(() => {
@@ -17,10 +18,13 @@ export default function ReviewSection() {
             
             try {
                 const res = await apiConnector("GET",ratingsEndpoints.REVIEWS_DETAILS_API);
-                const turfs = res.data.data
+                const turfs = res.data.data;
 
                 const data = turfs.filter(turf=>turf.city === name );
                 console.log("data: ",turfs);
+                if(turfs.length>0){
+                    setIsdata(true);
+                }
                 setReviews(res.data.data);
                 console.log("LOGGING REVIEWS",res);
             } catch (error) {
@@ -35,9 +39,13 @@ export default function ReviewSection() {
     return (
         <div>
             {
-                Loading ? (<><Spinner></Spinner></>):(<div>
-                    <Slider Courses={Reviews}></Slider>
-                </div>)
+                Loading ? (<><Spinner></Spinner></>):(
+                <div>
+                {
+                    isdata? (<div><Slider Courses={Reviews}></Slider></div>):(<div></div>)
+                }
+                </div>
+            )
             }
             
         </div>

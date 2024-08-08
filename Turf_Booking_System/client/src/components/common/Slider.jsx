@@ -21,7 +21,7 @@ const Slider = ({ Courses }) => {
     return (
         <div>
             {
-                Courses?.length ? (
+                Courses?.length && (
                     <Swiper
                         mousewheel={
                             {
@@ -80,35 +80,37 @@ const Slider = ({ Courses }) => {
                             ))
                         }
                     </Swiper>
-                ) : (
-                    <div className='flex gap-4 overflow-hidden bg-black'>
-                        <SkeletonTheme baseColor="#2C333F" highlightColor="#161D29">
-                            <div className=''>
-                                <Skeleton className='md:h-[200px] lg:w-[400px] h-[100px] w-[200px] rounded-xl' />
-                                <Skeleton className='md:h-[20px] w-[70px] rounded-md' />
-                                <Skeleton className='md:h-[20px] md:w-[400px] rounded-md' />
-                                <Skeleton className='md:h-[20px] md:w-[400px] rounded-md' />
-                            </div>
-                        </SkeletonTheme>
-                        <SkeletonTheme baseColor="#2C333F" highlightColor="#161D29">
-                            <div className=''>
-                                <Skeleton className='md:h-[200px] lg:w-[400px] h-[100px] w-[200px] rounded-xl' />
-                                <Skeleton className='md:h-[20px] w-[70px] rounded-md' />
-                                <Skeleton className='md:h-[20px] md:w-[400px] rounded-md' />
-                                <Skeleton className='md:h-[20px] md:w-[400px] rounded-md' />
-                            </div>
-                        </SkeletonTheme>
-                        <SkeletonTheme baseColor="#2C333F" highlightColor="#161D29">
-                            <div className=''>
-                                <Skeleton className='md:h-[200px] lg:w-[400px] h-[100px] w-[200px] rounded-xl' />
-                                <Skeleton className='md:h-[20px] w-[70px] rounded-md' />
-                                <Skeleton className='md:h-[20px] md:w-[400px] rounded-md' />
-                                <Skeleton className='md:h-[20px] md:w-[400px] rounded-md' />
-                            </div>
-                        </SkeletonTheme>
-                        <div className='text-white'>no data found</div>
-                    </div>
-                )
+                ) 
+                // : 
+                // (
+                //     <div className='flex gap-4 overflow-hidden bg-black'>
+                //         <SkeletonTheme baseColor="#2C333F" highlightColor="#161D29">
+                //             <div className=''>
+                //                 <Skeleton className='md:h-[200px] lg:w-[400px] h-[100px] w-[200px] rounded-xl' />
+                //                 <Skeleton className='md:h-[20px] w-[70px] rounded-md' />
+                //                 <Skeleton className='md:h-[20px] md:w-[400px] rounded-md' />
+                //                 <Skeleton className='md:h-[20px] md:w-[400px] rounded-md' />
+                //             </div>
+                //         </SkeletonTheme>
+                //         <SkeletonTheme baseColor="#2C333F" highlightColor="#161D29">
+                //             <div className=''>
+                //                 <Skeleton className='md:h-[200px] lg:w-[400px] h-[100px] w-[200px] rounded-xl' />
+                //                 <Skeleton className='md:h-[20px] w-[70px] rounded-md' />
+                //                 <Skeleton className='md:h-[20px] md:w-[400px] rounded-md' />
+                //                 <Skeleton className='md:h-[20px] md:w-[400px] rounded-md' />
+                //             </div>
+                //         </SkeletonTheme>
+                //         <SkeletonTheme baseColor="#2C333F" highlightColor="#161D29">
+                //             <div className=''>
+                //                 <Skeleton className='md:h-[200px] lg:w-[400px] h-[100px] w-[200px] rounded-xl' />
+                //                 <Skeleton className='md:h-[20px] w-[70px] rounded-md' />
+                //                 <Skeleton className='md:h-[20px] md:w-[400px] rounded-md' />
+                //                 <Skeleton className='md:h-[20px] md:w-[400px] rounded-md' />
+                //             </div>
+                //         </SkeletonTheme>
+                //         {/* <div className='text-white'>no data found</div> */}
+                //     </div>
+                // )
 
             }
         </div>
