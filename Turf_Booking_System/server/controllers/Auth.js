@@ -1,5 +1,5 @@
 const UserSchema = require("../models/User");
-const OTPSchema = require("../models/OTP.JS");
+const OTPSchema = require("../models/OTP.js");
 
 require("dotenv").config();
 const otpGenerator = require("otp-generator");
