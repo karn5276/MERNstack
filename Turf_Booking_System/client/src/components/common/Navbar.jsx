@@ -116,16 +116,16 @@ export default function Navbar() {
                     {/* nav links  */}
                     {/* Desktop  */}
 
-                    <div className='md:flex hidden justify-center relative items-center w-1/2 '>
+                    <div className='md:flex hidden  justify-center relative items-center w-1/2 mr-5'>
                         <span className='absolute top-3 left-1 text-xl'><CiSearch></CiSearch></span>
                         <input type="text" onClick={handleSearch} className='py-2 px-8 border border-gray-500 text-xl outline-none w-full' placeholder='Search' />
                     </div>
 
-                    <nav>
-                        <ul className=' flex-row gap-x-6 text-richblack-25 gap-5 hidden md:flex'>
+                    <nav className='w-1/4 h-full'>
+                        <ul className=' flex-row gap-x-6 text-black gap-3 hidden md:flex justify-around'>
                             {
                                 NavbarLinks?.map((element, index) => (
-                                    <li key={index} >
+                                    <li key={index}>
                                         {
                                             <Link to={element?.path}>
                                                 <p className={`${matchRoutes(element?.path) ? 'text-green-500' : 'text-black'}`} >
@@ -142,7 +142,7 @@ export default function Navbar() {
                     {/* login/signup/dashboard  */}
 
 
-                    <div className='flex-row gap-5 hidden md:flex items-center'>
+                    <div className='flex-row gap-3 hidden w-1/5 md:flex items-center justify-around pl-3'>
                         <div>
                             <Link to='/search' onClick={() => dispatch(setShow(true))} className='text-blue-600 md:flex gap-1 hover:scale-150 transition-all items-center hidden' >
 
@@ -153,8 +153,8 @@ export default function Navbar() {
                         </div>
                         {
                             token == null && (
-                                <Link to='/login' className='text-richblack-25' >
-                                    <button className='rounded-[8px]  bg-green-500 border border-richblack-700  px-[12px] py-[7px] text-black'>
+                                <Link to='/login' >
+                                    <button className='rounded-[8px]  bg-green-500 border border-richblack-700 px-[8px] py-[5px]  lg:px-[10px] lg:py-[5px] text-black'>
                                         Login
                                     </button>
                                 </Link>
@@ -163,7 +163,7 @@ export default function Navbar() {
                         {
                             token == null && (
                                 <Link to='/signup' className='text-richblack-25' >
-                                    <button className=' bg-green-500 rounded-[8px] border border-richblack-700  px-[12px] py-[7px] text-black' >
+                                    <button className=' bg-green-500 rounded-[8px] border border-richblack-700 px-[8px] py-[5px] lg:px-[10px] lg:py-[5px] text-black' >
                                         Signup
                                     </button>
                                 </Link>
