@@ -55,9 +55,9 @@ export default function Navbar() {
                     {/* mobile navbar  */}
 
 
-                    <div className={`flex md:hidden  relative gap- flex-row ${token !== null && user?.accountType !== "Owner" ? " -left-12" : ""}`}>
-                        <GiHamburgerMenu className={`w-16 h-8 fill-richblack-25 absolute -bottom-4 left-10 `} onClick={shownav} />
-                        <div ref={overlay} className=' fixed top-0 bottom-0 left-0 right-0 z-30 bg w-[100vw] hidden h-[100vh] overflow-y-hidden bg-[rgba(0,0,0,0.2)] ' onClick={shownav}></div>
+                    <div className={`flex md:hidden relative gap- flex-row ${token !== null && user?.accountType !== "Owner" ? " -left-12" : ""}`}>
+                        <GiHamburgerMenu className={`w-16 h-8 fill-richblack-25 absolute -bottom-4 left-10 bg-green-500 ml-8`} onClick={shownav} />
+                        <div ref={overlay} className='fixed top-0 bottom-0 left-0 right-0 z-30 bg w-[100vw] hidden h-[100vh] overflow-y-hidden bg-[rgba(0,0,0,0.2)] ' onClick={shownav}></div>
                         <div ref={show} className='mobNav bg-white border-red-600  z-50'>
                             <nav className=' items-center flex flex-col  absolute w-[200px] -left-[80px] -top-7  glass2' ref={show}>
                                 {
