@@ -1,4 +1,20 @@
+import { useDispatch } from "react-redux";
+import { setIsOwner } from "../../../src/slices/authSlice";
+
 export default function Tab({ tabData, field, setField }) {
+
+  const dispatch = useDispatch();
+  const handleChange = (data)=>{
+    setField(data);
+    console.log("karn pable: ",data);
+    if(data==="Owner"){
+      dispatch(setIsOwner(true));
+    }
+    else{
+      dispatch(setIsOwner(false));
+    }
+  }
+
     return (
       <div
         style={{
@@ -9,7 +25,7 @@ export default function Tab({ tabData, field, setField }) {
         {tabData.map((tab) => (
           <button
             key={tab.id}
-            onClick={() => setField(tab.type)}
+            onClick={()=>handleChange(tab.type)}
             className={`${
               field === tab.type
                 ? 'bg-green-500 text-white'
