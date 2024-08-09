@@ -29,7 +29,7 @@ const TurfCard = ({ turf, Height }) => {
             <div>
 
                 <Link to={`/turfs/${turf._id}`} className='w-full'>
-                    <div className='bg-white min-h-[350px] p-2  md:min-h-[460px] md:max-h-[600px] rounded-lg'>
+                    <div className='bg-white min-h-[320px] p-2  md:min-h-[460px] md:max-h-[600px] rounded-lg'>
                         <div>
                             <img
                                 src={turf?.image}
@@ -53,13 +53,17 @@ const TurfCard = ({ turf, Height }) => {
                                 </button>
                                 {/* <button><Heart></Heart></button> */}
                             </div>
-                            <p className='text-[12px] md:text-xl text-richblack-5'>Owner: <span className='text-black'>{turf?.owner?.firstName} {turf?.owner?.lastName}</span></p>
+
+                            {/* owner name section  */}
+                            {/* <p className='text-[12px] md:text-xl text-richblack-5 opacity-85'>Owner: <span className='text-black opacity-85'>{turf?.owner?.firstName} {turf?.owner?.lastName}</span></p> */}
+                            
+                            <p className='text-black text-md opacity-70'>{turf.area} {turf.city} {turf.pinCode}</p>
                             <div className='flex'>
                                 {/* <span className='text-yellow-500'>{avgReviewCount || 0}</span> */}
                                 <RatingStars Review_Count={avgReviewCount} />
                                 {/* <span className=' md:block hidden md:text-xl text-black'>{turf?.reviews?.length} Ratings</span> */}
                             </div>
-                            <p className='text-black text-md'>{turf.area} {turf.city} {turf.pinCode}</p>
+                            
                         </div>
                         
                     
