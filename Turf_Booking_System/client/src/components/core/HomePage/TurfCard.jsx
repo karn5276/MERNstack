@@ -25,7 +25,7 @@ const TurfCard = ({ turf, Height }) => {
 
 
     return (
-        <div className='mb-4 p-2 relative md:min-h-[500px]  min-h-[370px] flex gap-y-3 md:w-1/4 w-1/2 hover:scale-[1.03] transition-all duration-200 z-50 '>
+        <div className='mb-4 p-2 relative md:min-h-[500px]  min-h-[370px] flex gap-y-3 md:w-1/4 w-1/2 hover:scale-[1.03] transition-all duration-200 z-30 '>
             <div>
 
                 <Link to={`/turfs/${turf._id}`} className='w-full'>
