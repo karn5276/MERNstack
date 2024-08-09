@@ -34,9 +34,9 @@ export default function HomeSlider() {
         640: { slidesPerView: 1, },
         1024: { slidesPerView: 1.1, }
     }}
-      className="mySwiper rounded-lg py-3 bg-white h-[140px] md:h-[430px] text-center flex justify-center items-center"
+      className="mySwiper rounded-lg py-3 bg-white h-[180px] md:h-[430px] text-center flex justify-center items-center"
     >
-      <SwiperSlide className='bg-neutral-200 rounded-md'><img src={sliderImage1} className='w-full object-cover h-full'></img></SwiperSlide>
+      <SwiperSlide className='bg-neutral-200 rounded-md'><img src={sliderImage1} className='w-full object-contain h-full'></img></SwiperSlide>
       <SwiperSlide className='bg-neutral-200 rounded-md'><img src={sliderImage2}  className='w-full object-cover h-full'></img></SwiperSlide>
       {/* <SwiperSlide className='bg-neutral-200 rounded-md'><img src={sliderImage3} className='w-full object-cover h-full'></img></SwiperSlide>
       <SwiperSlide className='bg-neutral-200 rounded-md'><img src={sliderImage4} className='w-full object-cover h-full'></img></SwiperSlide> */}
