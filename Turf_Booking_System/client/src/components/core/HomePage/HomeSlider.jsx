@@ -28,7 +28,7 @@ export default function HomeSlider() {
       }}
       slidesPerView={1}
     freeMode={true}
-    navigation={true}
+    navigation={false}
     breakpoints={{
         300: { slidesPerView: 1, spaceBetween: 10, },
         640: { slidesPerView: 1, },

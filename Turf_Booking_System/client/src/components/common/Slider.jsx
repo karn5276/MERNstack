@@ -53,7 +53,7 @@ const Slider = ({ Courses }) => {
                             "--swiper-navigation-size": "20px",
                         }}
                         freeMode={true}
-                        navigation={true}
+                        navigation={false}
                         breakpoints={{
                             300: { slidesPerView: 1, spaceBetween: 10, },
                             640: { slidesPerView: 2.2, },
