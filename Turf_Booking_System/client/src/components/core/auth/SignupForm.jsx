@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { toast } from "react-hot-toast"
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
 import { sendOtp } from "../../../services/operation/authApi.js"
@@ -12,6 +12,9 @@ import Tab from "../../common/Tab"
 function SignupForm() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const acckey = process.env.ACCESS_KEY;
+
+  const {isOwner} = useSelector((state)=>state.auth);
 
   // student or instructor
   const [accountType, setAccountType] = useState(ACCOUNT_TYPE.USER) // defualt student
@@ -22,11 +25,13 @@ function SignupForm() {
     email: "",
     password: "",
     confirmPassword: "",
+    accesskey:""
+    
   })
 
   const [showPassword, setShowPassword] = useState(false)
 
-  const { firstName, lastName, email, password } = formData
+  const { firstName, lastName, email, password,accesskey } = formData
 
   // Handle input fields, when some value changes
   const handleOnChange = (e) => {
@@ -39,6 +44,10 @@ function SignupForm() {
   // Handle Form Submission
   const handleOnSubmit = (e) => {
     e.preventDefault()
+
+    if(accesskey!==acckey){
+      return toast.error("Invalid Access Key");
+    }
 
     const signupData = {
       ...formData,
@@ -58,6 +67,7 @@ function SignupForm() {
       email: "",
       password: "",
     })
+
     setAccountType(ACCOUNT_TYPE.USER)
   }
 
@@ -164,6 +174,28 @@ function SignupForm() {
           </label>
           
         </div>
+
+        {
+          isOwner &&
+          <label className="w-full">
+            <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
+            Access Key <sup className="text-pink-200">*</sup>
+            </p>
+            <input
+              required
+              type="text"
+              name="accesskey"
+              value={accesskey}
+              onChange={handleOnChange}
+              placeholder="Enter access key"
+              style={{
+                boxShadow: "inset 0px -1px 0px rgba(255, 255, 255, 0.18)",
+              }}
+              className="w-full rounded-[0.5rem] bg-richblack-800 p-[12px] text-richblack-5"
+            />
+          </label>
+        }
+
         <button
           type="submit"
           className="mt-6 rounded-[8px] bg-green-500 py-[8px] px-[12px] font-medium text-richblack-900"
