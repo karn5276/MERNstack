@@ -95,7 +95,7 @@ const Turf = () => {
 
             {
                 loading ? (<><Spinner></Spinner></>) : (<>
-                    <div className=' box-content px-4 w-full lg:relative flex lg:flex-row flex-col'>
+                    <div className=' box-content px-3 sm:px-4 w-full lg:relative flex lg:flex-row flex-col'>
                         <div className='m-auto  px-3 grid min-h-[450px] max-w-maxContentTab w-full lg:w-7/12 justify-items-center py-8 lg:mx-0 lg:justify-items-start lg:py-3 xl:max-w-[810px]'>
 
                             <div className='relative block w-full max-h-[30rem] mr-10 lg:mr-0'>
@@ -147,7 +147,7 @@ const Turf = () => {
 
 
                         {/* // add price time here  */}
-                        <div className='lg:w-4/12 w-11/12 lg:bg-neutral-100 pl-1 md:pl-5 mt-5 rounded-md flex justify-start items-start lg:justify-items-center flex-col'>
+                        <div className='lg:w-4/12 w-full lg:bg-neutral-100 md:pl-5 mt-5 rounded-md flex justify-start items-start lg:justify-items-center flex-col'>
 
 
                             {/* heading  */}
@@ -269,8 +269,8 @@ const Turf = () => {
                     </div>
 
                     {/* Reviews */}
-                    <div className='md:ml-8 box-content px-4 text-start text-richblack-5 lg:w-[1260px]'>
-                        <div className='mx-auto max-w-maxContentTab lg:mx-0 xl:max-w-[990px]'>
+                    <div className='m-auto box-content px-4 text-start text-richblack-5 lg:w-[1260px]'>
+                        <div className='max-w-maxContentTab lg:mx-0 xl:max-w-[990px]'>
                             <div className='my-8 border border-richblack-600 p-3 md:p-8'>
                                 <p className='text-3xl font-semibold'>
                                     Reviews
