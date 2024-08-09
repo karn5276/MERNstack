@@ -41,20 +41,20 @@ const VerifyOtp = () => {
         loading ? (<div className=" h-[100vh] flex justify-center items-center"><div className="custom-loader"></div></div>) : (
             <div>
                 <div className='min-h-[calc(100vh-3.5rem)] grid place-items-center'>
-                    <div className='max-w-[500px] p-4 lg:p-8'>
+                    <div className='max-w-[100vw] p-4 lg:p-8'>
                         <h1 className="text-richblack-5 font-semibold text-[1.875rem] leading-[2.375rem]">Verify Email</h1>
                         <p className="text-[1.125rem] leading-[1.625rem] my-4 text-richblack-100">A verification code has been sent to you. Enter the code below</p>
-                        <form onSubmit={handleOnSubmit}>
+                        <form onSubmit={handleOnSubmit} className='max-w-[100vw]'>
                             <OTPInput
                                 value={otp}
                                 onChange={setOtp}
                                 numInputs={6}
                                 renderSeparator={<span>-</span>}
-                                inputStyle="w-[20px] rounded-[8px] border-[1px] border-richblack-500 text-[3rem] text-center"
+                                inputStyle="md:w-[10px] rounded-[8px] border-[1px] border-richblack-500 text-[2.5rem] sm:text-[3rem] text-center"
                                 focusStyle="border-[5px] border-red-500"
                                 isInputNum={true}
                                 shouldAutoFocus={true}
-                                containerStyle="flex justify-between gap-4"
+                                containerStyle="flex justify-between gap-2 sm:gap-4"
                                 renderInput={(props) => <input {...props} />}
 
                             />

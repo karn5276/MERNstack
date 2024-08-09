@@ -144,7 +144,7 @@ function TurfBuilder() {
 
 
             <br></br>
-            <button className='p-1 text-xs md:text-base md:w-1/6 flex justify-center items-center gap-2 bg-green-500 rounded-md font-bold' onClick={addItem} type='button'>
+            <button className='p-1 text-lg md:text-base md:w-1/6 flex justify-center items-center gap-2 bg-green-500 rounded-md font-bold' onClick={addItem} type='button'>
               <p>Add</p>
               <span><MdAddCircleOutline></MdAddCircleOutline></span>
             </button>
@@ -154,11 +154,11 @@ function TurfBuilder() {
                 editTurf ? (priceTime.length > 0 && (
                   priceTime.map((item, index) => (
                     <div key={index} className='flex gap-2'>
-                      <div className='flex gap-2 bg-green-200 mb-3 p-1 w-5/12'>
+                      <div className='flex gap-2 bg-green-200 md:text-2xl text-xl mb-3 p-1 w-9/12 sm:w-8/12 md:w-5/12'>
                         <strong>Time:</strong> <p className='mr-2'> {item.time} </p>
                         <strong>Price:</strong> <p className='flex items-center'><FaRupeeSign className='text-sm'></FaRupeeSign>{item.price}</p>
                       </div>
-                      <button className='ml-8 mb-3 rounded-md text-xl' onClick={() => removeItem(index)}><MdDelete className='text-red-800'></MdDelete></button>
+                      <button className='ml-8 mb-3 rounded-md text-3xl md:text-4xl' onClick={() => removeItem(index)}><MdDelete className='text-red-800'></MdDelete></button>
                     </div>
                   ))
                 )) : (data.length > 0 && (
