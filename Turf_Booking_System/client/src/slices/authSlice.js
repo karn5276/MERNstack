@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState ={
     token: localStorage.getItem("token") ? JSON.parse(localStorage.getItem("token")):null,
-    
+    isOwner:false
 }
 
 const authSlice =createSlice({
@@ -18,9 +18,12 @@ const authSlice =createSlice({
           },
         setToken(state,value){
             state.token=value.payload
+        },
+        setIsOwner(state,value){
+            state.isOwner=value.payload
         }
     }
 });
 
-export const {setToken,setLoading,setSignupData}=authSlice.actions;
+export const {setToken,setLoading,setSignupData,setIsOwner}=authSlice.actions;
 export default authSlice.reducer;
