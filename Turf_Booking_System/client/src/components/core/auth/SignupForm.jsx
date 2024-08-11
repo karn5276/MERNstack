@@ -8,11 +8,11 @@ import { sendOtp } from "../../../services/operation/authApi.js"
 import { setSignupData } from "../../../slices/authSlice.js"
 import { ACCOUNT_TYPE } from "../../../utils/constants.js"
 import Tab from "../../common/Tab"
+// const acckey = process.env.ACCESS_KEY;
 
 function SignupForm() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const acckey = process.env.ACCESS_KEY;
 
   const {isOwner} = useSelector((state)=>state.auth);
 
@@ -45,30 +45,61 @@ function SignupForm() {
   const handleOnSubmit = (e) => {
     e.preventDefault()
 
-    if(accesskey!==acckey){
-      return toast.error("Invalid Access Key");
+    
+    if(accountType===ACCOUNT_TYPE.OWNER ){
+      if(accesskey!==process.env.REACT_APP_ACCESS_KEY){
+        return toast.error("Invalid Access Key");
+      }
+      else{
+          const signupData = {
+            ...formData,
+            accountType,
+          }
+      
+          // Setting signup data to state
+          // To be used after otp verification
+          dispatch(setSignupData(signupData))
+          // Send OTP to user for verification
+          dispatch(sendOtp(formData.email, navigate))
+      
+          // Reset
+          setFormData({
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+          })
+      
+          setAccountType(ACCOUNT_TYPE.USER)
+      }
     }
 
-    const signupData = {
-      ...formData,
-      accountType,
+    else{
+      const signupData = {
+        ...formData,
+        accountType,
+      }
+  
+      // Setting signup data to state
+      // To be used after otp verification
+      dispatch(setSignupData(signupData))
+      // Send OTP to user for verification
+      dispatch(sendOtp(formData.email, navigate))
+  
+      // Reset
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+      })
+  
+      setAccountType(ACCOUNT_TYPE.USER)
     }
 
-    // Setting signup data to state
-    // To be used after otp verification
-    dispatch(setSignupData(signupData))
-    // Send OTP to user for verification
-    dispatch(sendOtp(formData.email, navigate))
 
-    // Reset
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-    })
 
-    setAccountType(ACCOUNT_TYPE.USER)
+    
   }
 
   // data to pass to Tab component

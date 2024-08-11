@@ -6,6 +6,8 @@ import Footer from './components/common/footer.jsx';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import VerifyOtp from './pages/VerifyOtp.jsx';
+import ScrollToTop from './components/ScrollToTop.js';
+import { RiWifiOffLine } from "react-icons/ri";
 import {
   BrowserRouter as Router,
   Routes,
@@ -38,6 +40,21 @@ function App() {
 
   return (
     <div className="App">
+
+      
+      {!navigator.onLine && (
+        <div className="bg-red-500 flex text-white text-center p-2 bg-richblack-300 justify-center gap-2 items-center">
+          <RiWifiOffLine size={22} />
+          Please check your internet connection.
+          <button
+            className="ml-2 bg-richblack-500 rounded-md p-1 px-2 text-white"
+            onClick={() => window.location.reload()}
+          >
+            Retry
+          </button>
+        </div>
+      )}
+      <ScrollToTop />
       
       <Navbar></Navbar>
       

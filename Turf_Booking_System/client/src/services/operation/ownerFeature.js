@@ -5,7 +5,6 @@ import logo from "../../assets/logo/Main_Logo.png";
 
 const { TURF_PAYMENT_API, TURF_VERIFY_API, SEND_PAYMENT_SUCCESS_EMAIL_API } = studentEndpoints;
 
-
 function loadScript(src) {
     return new Promise((resolve) => {
         const script = document.createElement("script");
