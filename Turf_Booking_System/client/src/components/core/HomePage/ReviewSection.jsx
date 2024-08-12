@@ -40,10 +40,15 @@ export default function ReviewSection() {
         <div>
             {
                 Loading ? (<><Spinner></Spinner></>):(
-                <div>
-                {
-                    isdata? (<div><Slider Courses={Reviews}></Slider></div>):(<div></div>)
-                }
+                <div className='pt-5'>
+                    <div className='w-full border border-t-2 mb-3 flex align-middle items-center justify-center' >
+                        <p className='md:text-[2rem] font-bold mx-1 pb-1 underline underline-offset-4'>Customers Review</p>
+                    </div>
+                    <div>
+                        {
+                            isdata? (<div><Slider Courses={Reviews}></Slider></div>):(<div></div>)
+                        }
+                    </div>
                 </div>
             )
             }
