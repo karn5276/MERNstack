@@ -4,7 +4,7 @@ const initialState = {
  show:false,
  shownavbar:true,
  name:"Pune",
- showlogo:false,
+ showlogo2:false,
 }
 
 const searchSlice = createSlice({
@@ -21,7 +21,7 @@ const searchSlice = createSlice({
       state.shownavbar=action.payload
     },
     setshowlogo:(state,action)=>{
-      state.showlogo=action.payload
+      state.showlogo2=action.payload
     }
     
   },

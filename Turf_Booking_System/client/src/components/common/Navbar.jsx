@@ -19,11 +19,11 @@ export default function Navbar() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [showlogo2,setshowlogo2]=useState(false);
+    // const [showlogo2,setshowlogo2]=useState(false);
 
     const { token } = useSelector((state) => state.auth);
     const { user } = useSelector((state) => state.profile);
-    const { name, shownavbar} = useSelector((state) => state.search);
+    const { name, shownavbar,showlogo2} = useSelector((state) => state.search);
 
     const show = useRef();
     const overlay = useRef();
@@ -31,16 +31,23 @@ export default function Navbar() {
     const location = useLocation()
 
     const matchRoutes = (routes) => {
+        // if(location.pathname==="/"){
+        //     setshowlogo2(true);
+        // }
         return matchPath({ path: routes }, location.pathname)
     }
 
     useEffect(()=>{
         console.log("location: ",location.pathname);
         if(location.pathname==="/"){
-            setshowlogo2(true);
+            // setshowlogo2(true);
+            dispatch(setshowlogo(true));
+            console.log("setshowlogo2 true: ",showlogo2);
         }
         else{
-            setshowlogo2(false);
+            // setshowlogo2(false);
+            dispatch(setshowlogo(false));
+            console.log("setshowlogo2: ",showlogo2);
         }
     },[location.pathname])
 
@@ -79,9 +86,9 @@ export default function Navbar() {
                     {/* mobile navbar  */}
 
 
-                    <div className={`flex md:hidden z-50 relative gap- flex-row ${token !== null && user?.accountType !== "Owner" ? " -left-12" : ""}`}>
+                    <div className={`flex md:hidden z-50 relative gap- flex-row`}>
                         
-                        <GiHamburgerMenu className={`w-16 h-8 fill-richblack-25 absolute -bottom-4 ${showlogo2 ? ('left-16'):('left-36')}  sm:ml-60`} onClick={shownav} />
+                        <GiHamburgerMenu className={`w-16 h-8 fill-richblack-25 absolute -bottom-4 ${!showlogo2 &&('left-36')}  sm:ml-60`} onClick={shownav} />
                         
                         <div ref={overlay} className='fixed top-0 bottom-0 left-0 z-50 right-0 bg w-[100vw] hidden h-[100vh] overflow-y-hidden bg-[rgba(0,0,0,0.2)] ' onClick={shownav}></div>
                         <div ref={show} className='mobNav bg-white border-red-600  z-50'>
@@ -123,12 +130,12 @@ export default function Navbar() {
                                 </div>
                                 <div className=' mt-4 mb-4 bg-black w-[200px] h-[2px]'></div>
                                 <Link to='/about' onClick={() => { shownav() }} className="p-2">
-                                    <p className=' text-richblack-5 '>
+                                    <p>
                                         About
                                     </p>
                                 </Link>
                                 <Link to='/contact' onClick={() => { shownav() }} className="p-2">
-                                    <p className=' text-richblack-5 '>
+                                    <p>
                                         Contact
                                     </p>
                                 </Link>
