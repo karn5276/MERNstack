@@ -61,8 +61,8 @@ const Modal = () => {
                         <Spinner></Spinner> </div>) :
                     (<>  {show &&
 
-                        <div className='hidden md:block'>
-                            <div className='w-11/12 max-w-[1150px] mix-h-[800px] rounded-lg border border-richblack-400 bg-white p-6 z-50 fixed left-[50%] top-[40%] -translate-x-1/2 -translate-y-1/2'>
+                        <div className='md:block'>
+                            <div className='w-11/12 max-w-[1150px] max-h-[800px] rounded-lg border border-richblack-400 bg-white p-6 z-50 fixed left-[50%] top-[40%] -translate-x-1/2 -translate-y-1/2'>
                                 <div className='relative w-full'>
                                     <form action="" onSubmit={searchHandler}>
                                         <input onChange={(e) => setCity(e.target.value)} value={city} name='search' type="text" className='pl-10 text-lg border-gray-500 border py-3 w-full placeholder:text-xl' placeholder='Search for your city' />
@@ -84,11 +84,11 @@ const Modal = () => {
 
                                 <div className='pt-2 flex justify-center items-center mb-5 flex-col'>
                                     <p className='p-3 text-xl'>Popular Cities</p>
-                                    <div className='flex gap-10 flex-wrap cursor-pointer hover:text-black'>
+                                    <div className='flex gap-x-10 flex-wrap cursor-pointer hover:text-black'>
                                         {
                                             cities.map((city, index) => (
 
-                                                <div onClick={() => listHandler(city.name)} key={index} className='flex bg-cover bg-center h-64 flex-col justify-center z-10 items-center hover:text-black'>
+                                                <div onClick={() => listHandler(city.name)} key={index} className='flex flex-wrap bg-cover bg-center h-32 flex-col justify-center z-10 items-center hover:text-black'>
                                                     <img className='hover:text-black' src={city.image} alt="" />
                                                     <p className='text-gray-400 font-bold hover:text-black'>{city.name}</p>
                                                 </div>

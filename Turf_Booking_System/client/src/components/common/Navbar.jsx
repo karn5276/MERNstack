@@ -155,8 +155,8 @@ export default function Navbar() {
                                 NavbarLinks?.map((element, index) => (
                                     <li key={index}>
                                         {
-                                            <Link to={element?.path}>
-                                                <p className={`${matchRoutes(element?.path) ? 'text-green-500' : 'text-black'}`} >
+                                            <Link to={element?.path} className='font-bold'>
+                                                <p className={`${matchRoutes(element?.path) ? 'text-green-500 underline underline-offset-8' : 'text-black'}`} >
                                                     {element?.title}
                                                 </p>
                                             </Link>

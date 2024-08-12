@@ -38,10 +38,6 @@ export const cities=[
         name:"Kochi"
     },
     {
-        image:kolk,
-        name:"Kolkata"
-    },
-    {
         image:pune,
         name:"Pune"
     },
