@@ -21,7 +21,7 @@ function Login() {
         <div className="flex flex-col gap-2 relative">
             <div onClick={()=>{setShowDemo(false)}} className="absolute top-[-30px] right-[-20px] text-5xl rounded-full w-[40px] h-[40px] flex justify-center items-center cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="20" height="20">
-                    <circle cx="50" cy="50" r="45" fill="#888888" stroke="#000000" stroke-width="2" />
+                    <circle cx="50" cy="50" r="45" fill="#888888" stroke="#000000" strokeWidth="2" />
                     <circle cx="50" cy="50" r="20" fill="#ffffff" />
                 </svg>
 

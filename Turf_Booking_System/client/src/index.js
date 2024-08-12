@@ -8,6 +8,7 @@ import rootReducer from "./reducers";
 import {configureStore} from "@reduxjs/toolkit";
 import {Provider} from 'react-redux';
 import {Toaster} from 'react-hot-toast';
+import ScrollToTop from './components/ScrollToTop';
 
 
 const store = configureStore({
@@ -19,6 +20,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
+      <ScrollToTop/>
         <App />
         <Toaster></Toaster>
       </BrowserRouter>

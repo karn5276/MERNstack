@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
  show:false,
  shownavbar:true,
- name:"Pune"
+ name:"Pune",
+ showlogo:false,
 }
 
 const searchSlice = createSlice({
@@ -18,6 +19,9 @@ const searchSlice = createSlice({
     },
     setShownavbar:(state,action)=>{
       state.shownavbar=action.payload
+    },
+    setshowlogo:(state,action)=>{
+      state.showlogo=action.payload
     }
     
   },
@@ -26,7 +30,8 @@ const searchSlice = createSlice({
 export const {
     setShow,
     setName,
-    setShownavbar
+    setShownavbar,
+    setshowlogo
 } = searchSlice.actions
 
 export default searchSlice.reducer

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { matchPath, useLocation } from 'react-router-dom';
 import logo from "../../assets/logo/Main_Logo.png";
 import { Link } from 'react-router-dom';
@@ -12,25 +12,38 @@ import { useState } from 'react';
 import { CiSearch } from "react-icons/ci";
 import { setShow } from '../../slices/searchSlice';
 import { useNavigate } from 'react-router-dom';
-import { setShownavbar } from '../../slices/searchSlice';
+import { setShownavbar,setshowlogo } from '../../slices/searchSlice';
 
 
 export default function Navbar() {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [showlogo2,setshowlogo2]=useState(false);
 
     const { token } = useSelector((state) => state.auth);
     const { user } = useSelector((state) => state.profile);
-    const { name, shownavbar } = useSelector((state) => state.search);
+    const { name, shownavbar} = useSelector((state) => state.search);
 
     const show = useRef();
     const overlay = useRef();
 
     const location = useLocation()
+
     const matchRoutes = (routes) => {
         return matchPath({ path: routes }, location.pathname)
     }
+
+    useEffect(()=>{
+        console.log("location: ",location.pathname);
+        if(location.pathname==="/"){
+            setshowlogo2(true);
+        }
+        else{
+            setshowlogo2(false);
+        }
+    },[location.pathname])
+
 
     const shownav = () => {
         show.current.classList.toggle('navshow');
@@ -45,18 +58,31 @@ export default function Navbar() {
     return (
         <div>
             {shownavbar && <div className='flex h-15 justify-center items-center border-b-[1px] border-b-white-100'>
-                <div className='flex w-11/12 max-w-Content justify-between items-center'>
+                <div className='flex w-full sm:w-11/12 max-w-Content justify-between items-center'>
                     {/* logo image  */}
-                    <Link to='/login'>
-                        <img className='md:w-[160] md:h-[42]' src={logo} width={140} alt="Turf" height={38}></img>
+                    { showlogo2 &&
+                        <Link to='/login' className='hidden sm:flex mr-[5%]'>
+                        <img className='md:w-[160] md:h-[42] sm:flex' src={logo} width={140} alt="Turf" height={38}></img>
                     </Link>
+                    }
+                    
+                    {
+                        showlogo2 ? (<div className='sm:hidden justify-center relative items-center w-full py-2 pl-4'>
+                            <span className='absolute top-5 left-5 text-xl'><CiSearch></CiSearch></span>
+                            <input type="text" onClick={handleSearch} className='py-2 px-8 border border-gray-700 text-xl outline-none w-full' placeholder='Search' />
+                        </div>):(<><Link to='/login' >
+                                            <img className='md:w-[160] md:h-[42] sm:flex' src={logo} width={140} alt="Turf" height={38}></img>
+                                            </Link></>)
+                    }
 
 
                     {/* mobile navbar  */}
 
 
                     <div className={`flex md:hidden z-50 relative gap- flex-row ${token !== null && user?.accountType !== "Owner" ? " -left-12" : ""}`}>
-                        <GiHamburgerMenu className={`w-16 h-8 fill-richblack-25 absolute -bottom-4 left-10 ml-12 sm:ml-60`} onClick={shownav} />
+                        
+                        <GiHamburgerMenu className={`w-16 h-8 fill-richblack-25 absolute -bottom-4 ${showlogo2 ? ('left-16'):('left-40')}  sm:ml-60`} onClick={shownav} />
+                        
                         <div ref={overlay} className='fixed top-0 bottom-0 left-0 z-50 right-0 bg w-[100vw] hidden h-[100vh] overflow-y-hidden bg-[rgba(0,0,0,0.2)] ' onClick={shownav}></div>
                         <div ref={show} className='mobNav bg-white border-red-600  z-50'>
                             <nav className=' items-center flex flex-col  absolute w-[200px] -left-[80px] -top-7  glass2' ref={show}>
@@ -116,10 +142,12 @@ export default function Navbar() {
                     {/* nav links  */}
                     {/* Desktop  */}
 
-                    <div className='md:flex hidden  justify-center relative items-center w-1/2 mr-5'>
+                    { showlogo2 &&   
+                        <div className='md:flex hidden  justify-center relative items-center w-1/2 mr-5'>
                         <span className='absolute top-3 left-1 text-xl'><CiSearch></CiSearch></span>
                         <input type="text" onClick={handleSearch} className='py-2 px-8 border border-gray-500 text-xl outline-none w-full' placeholder='Search' />
                     </div>
+                    }
 
                     <nav className='w-1/4 h-full'>
                         <ul className=' flex-row gap-x-6 text-black gap-3 hidden md:flex justify-around'>
