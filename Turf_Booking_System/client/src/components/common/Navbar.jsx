@@ -81,7 +81,7 @@ export default function Navbar() {
 
                     <div className={`flex md:hidden z-50 relative gap- flex-row ${token !== null && user?.accountType !== "Owner" ? " -left-12" : ""}`}>
                         
-                        <GiHamburgerMenu className={`w-16 h-8 fill-richblack-25 absolute -bottom-4 ${showlogo2 ? ('left-16'):('left-40')}  sm:ml-60`} onClick={shownav} />
+                        <GiHamburgerMenu className={`w-16 h-8 fill-richblack-25 absolute -bottom-4 ${showlogo2 ? ('left-16'):('left-36')}  sm:ml-60`} onClick={shownav} />
                         
                         <div ref={overlay} className='fixed top-0 bottom-0 left-0 z-50 right-0 bg w-[100vw] hidden h-[100vh] overflow-y-hidden bg-[rgba(0,0,0,0.2)] ' onClick={shownav}></div>
                         <div ref={show} className='mobNav bg-white border-red-600  z-50'>
