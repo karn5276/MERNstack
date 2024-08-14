@@ -33,6 +33,7 @@ import Modal from './components/common/Modal.jsx';
 import Turf from './pages/Turf.jsx';
 import Dashboardinstructor from './components/core/Dashboard/InstructorDashboard/Dashboardinstructor.jsx';
 import HomeSearch from './components/common/HomeSearch.jsx';
+import CitySelector from './components/common/citySelector.jsx';
 
 function App() {
 
@@ -63,6 +64,8 @@ function App() {
       <div>
         <Routes>
           <Route path="/" element={<Home></Home>}></Route>
+          <Route path="/searchCity" element={<CitySelector></CitySelector>}></Route>
+
           <Route path='/about' element={<About></About>}></Route>
           <Route path='/contact' element={<About></About>}></Route>
           <Route path="/turfs/:turfId" element={<Turf />} />

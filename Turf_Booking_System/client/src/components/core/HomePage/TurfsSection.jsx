@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { fetchSpecificCityTurfs } from '../../../services/operation/TurfDetailsAPI'
 import homesectionImage from "../../../assets/images/homesectionImage.jpeg"
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import TurfCard from './TurfCard';
+import { CiLocationOn } from "react-icons/ci";
+import { Link } from 'react-router-dom';
+import { setShow } from '../../../slices/searchSlice';
+import CitySelector from '../../common/citySelector';
+
+
 
 export default function TurfsSection() {
 
     const {name}=useSelector((state)=>state.search);
     const [turfs,setTurfs]=useState([]);
+    const dispatch = useDispatch();
   useEffect(()=>{
     const fetchTurfs = async()=>{
         try{
@@ -25,6 +32,14 @@ export default function TurfsSection() {
   },[])
   return (
     <div className='mt-3'>
+        <div className='flex justify-end'>
+            <Link to='/searchCity' className='text-blue-600 flex gap-1 items-center pr-2' >
+
+                <span><CiLocationOn className='text-2xl'></CiLocationOn></span>
+                <p className='underline text-xl'>{name}</p>
+
+            </Link>
+        </div>
         <div className='p-2 w-11/12 h-auto mt-2  m-auto'>
             <p className='text-3xl text-black px-2 font-bold'>Recommended Turfs</p>
         </div>
@@ -38,7 +53,7 @@ export default function TurfsSection() {
                         {
                             index==3 && (
                                 <div className='w-full hidden md:block h-40 mb-5 relative rounded-3xl'>
-                                    <img className='w-full h-full rounded-2xl' src={homesectionImage}></img>
+                                    <img className='w-full h-full rounded-2xl' src={homesectionImage} alt=''></img>
                                     <p className='text-yellow-500 text-7xl left-7 absolute top-5'>Book<br></br>   <span className='ml-28'>Now</span></p>
                                     <p className='absolute top-6 right-20 text-white text-5xl'>Continuous sports enjoyment, available <br></br>anytime, anywhere</p>
                                 </div>
