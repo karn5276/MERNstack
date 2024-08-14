@@ -113,17 +113,14 @@ const Modal = () => {
                                             <p>Other Cities</p>
                                         </div>
                                         {
-                                            data.length == 0 ? (<div>No City Found</div>) : (<div className='text-gray-500 flex flex-wrap px-5 gap-x-44 gap-y-1'>
+                                            data.length === 0 ? (<div>No City Found</div>) : (<div className='text-gray-500 flex flex-wrap px-5 gap-x-44 gap-y-1'>
                                                 {
                                                     data.map((city, index) => (
                                                         <p key={index} className='hover:text-green-500 cursor-pointer' onClick={() => listHandler(city)}>{city}</p>
                                                     ))
 
                                                 }
-
-
                                             </div>)
-
                                         }
 
                                     </div>
