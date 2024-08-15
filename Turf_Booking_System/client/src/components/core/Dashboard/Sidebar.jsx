@@ -78,8 +78,8 @@ const Sidebar = () => {
 
 
         {/* mobile sidebar */}
-        <div className='flex lg:hidden fixed bottom-0 justify-between items-center px-2 py-1 bg-richblack-900 z-50 w-full'>
-        <div className='flex flex-row gap-1 w-full justify-between'>
+        <div className='flex lg:hidden fixed bottom-0 justify-between bg-green-500 items-center px-3 py-1 z-50 w-full'>
+        <div className='flex flex-row w-full justify-between'>
                 {
                     sidebarLinks.map((link) => {
                         if(link.type && user?.accountType !== link.type) return null;
