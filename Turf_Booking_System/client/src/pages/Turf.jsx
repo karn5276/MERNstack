@@ -38,6 +38,10 @@ const Turf = () => {
     const handelPayment = () => {
         if (token) {
 
+            if(ACCOUNT_TYPE.OWNER === user?.accountType){
+                return toast.error("The owner cannot book the turf.!")
+            }
+
             if(time){
                 let turf_time = parseInt(time);
 
@@ -240,13 +244,13 @@ const Turf = () => {
                             </div>
 
                             {/* button  */}
-                            {ACCOUNT_TYPE.OWNER !== user?.accountType &&
+                            {/* {ACCOUNT_TYPE.OWNER !== user?.accountType &&  */}
                                 <div className='flex rounded-md flex-col mt-4 border-y border-y-richblack-500 w-11/12 md:p-3 p-0 py-3'>
                                     <>
                                         <button onClick={handelPayment} className='bg-green-500 py-2 rounded-md w-11/12 cursor-pointer'>BOOK</button>
                                     </>
                                 </div>
-                            }
+                            {/* } */}
 
 
                             <div className='md:mt-8 text-red-600 md:text-xl'><p>Terms & Condition :</p></div>
