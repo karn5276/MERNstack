@@ -3,6 +3,7 @@ import { apiConnector } from "../apiConnector";
 import { toast } from "react-hot-toast";
 import logo from "../../assets/logo/Main_Logo.png";
 
+
 const { TURF_PAYMENT_API, TURF_VERIFY_API, SEND_PAYMENT_SUCCESS_EMAIL_API } = studentEndpoints;
 
 function loadScript(src) {
@@ -59,7 +60,7 @@ export async function buyCourse(token, turf, turfprice,time, userDetails, naviga
             handler: async function (response) {
                 console.log("bookTurf -> response", response)
                 verifypament(response, turf,price,time, token, navigate);
-                sendPaymentSuccessEmail(response, orderResponse.data.amount, token);
+                sendPaymentSuccessEmail(response, orderResponse.data.amount, token,turf,time);
             },
             theme: {
                 color: "#686CFD",
@@ -68,7 +69,7 @@ export async function buyCourse(token, turf, turfprice,time, userDetails, naviga
         const paymentObject = new window.Razorpay(options);
         paymentObject.open();
         paymentObject.on("payment.failed", function (response) {
-            toast.success("Payment Failed");
+            toast.error("Payment Failed");
         });
         toast.dismiss(toastId);
 
@@ -81,17 +82,14 @@ export async function buyCourse(token, turf, turfprice,time, userDetails, naviga
 
 
 
-async function sendPaymentSuccessEmail(response, amount, token) {
-    // const data = {
-    //     amount,
-    //     paymentId: response.razorpay_payment_id,
-    //     orderId: response.razorpay_order_id,
-    //     signature: response.razorpay_signature,
-    // };
+async function sendPaymentSuccessEmail(response, amount, token,turf,time) {
+
     const res = await apiConnector("POST", SEND_PAYMENT_SUCCESS_EMAIL_API, {
         amount,
         paymentId: response.razorpay_payment_id,
         orderId: response.razorpay_order_id,
+        turf,
+        time
     }, {
         Authorisation: `Bearer ${token}`,
     });

@@ -19,47 +19,8 @@ const {
   SEARCH_TURF_API
 } = turfEndpoints;
 
-// export const getAllCourses = async () => {
-//   const toastId = toast.loading("Loading...");
-//   let result = [];
-//   try {
-//     const response = await apiConnector("GET", GET_ALL_COURSE_API);
-//     if (!response?.data?.success) {
-//       throw new Error("Could Not Fetch Course Categories");
-//     }
-//     result = response?.data?.data;
-//   } catch (error) {
-//     console.log("GET_ALL_COURSE_API API ERROR............", error);
-//     toast.error(error.message);
-//   }
-//   toast.dismiss(toastId);
-//   return result;
-// };
 
-// export const fetchCourseDetails = async (courseId, dispatch) => {
-//   // const toastId = toast.loading("Loading...")
-//   dispatch(setProgress(50));
-//   let result = null;
-//   try {
-//     const response = await apiConnector("POST", COURSE_DETAILS_API, {
-//       courseId,
-//     });
-//     console.log("COURSE_DETAILS_API API RESPONSE............", response.data);
 
-//     if (!response.data.success) {
-//       throw new Error(response.data.message);
-//     }
-//     result = response.data.data[0];
-//   } catch (error) {
-//     console.log("COURSE_DETAILS_API API ERROR............", error);
-//     result = error.response.data;
-//     // toast.error(error.response.data.message);
-//   }
-//   // toast.dismiss(toastId)
-//   dispatch(setProgress(100));
-//   //   dispatch(setLoading(false));
-//   return result;
-// };
 
 // add the course details
 export const addCourseDetails = async (data, token) => {
@@ -200,38 +161,8 @@ export const RemovedTurf = async (data, token) => {
   toast.dismiss(toastId);
 };
 
-// // get full details of a course
-// export const getFullDetailsOfTurf = async (turfId, token) => {
-//   const toastId = toast.loading("Loading...");
-//   //   dispatch(setLoading(true));
-//   let result = null;
-//   try {
-//     console.log("activited");
-//     const response = await apiConnector(
-//       "POST",
-//       GET_FULL_TURF_DETAILS_AUTHENTICATED,
-//       {
-//         turfId,
-//       },
-//       {
-//         Authorisation: `Bearer ${token}`,
-//       }
-//     );
-//     console.log("COURSE_FULL_DETAILS_API API RESPONSE............", response);
 
-//     if (!response.data.success) {
-//       throw new Error(response.data.message);
-//     }
-//     result = response?.data?.data;
-//   } catch (error) {
-//     console.log("COURSE_FULL_DETAILS_API API ERROR............", error);
-//     result = error.response.data;
-//     // toast.error(error.response.data.message);
-//   }
-//   toast.dismiss(toastId);
-//   //   dispatch(setLoading(false));
-//   return result;
-// };
+// get full details of a turf
 
 export const getFullDetailsOfTurf = async (turfId) => {
   const toastId = toast.loading("Loading...")

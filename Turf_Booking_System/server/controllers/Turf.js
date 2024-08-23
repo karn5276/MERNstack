@@ -40,7 +40,6 @@ module.exports.createTurf = async (req, res) => {
             })
         }
 
-        console.log("ownerDetails: ", ownerDetails);
 
 
         // Upload the Thumbnail to Cloudinary
@@ -171,7 +170,6 @@ module.exports.editTurf = async (req, res) => {
 
         const userId = req.user.id;
         const { turfId } = req.body;
-        console.log("req.body: ",req.body);
 
         const findTurf = await turfSchema.findById({ _id: turfId });
 
@@ -183,12 +181,10 @@ module.exports.editTurf = async (req, res) => {
         }
 
         const updates = req.body;
-        console.log("updates: ",updates);
 
 
         // If Thumbnail Image is found, update it
         if (req.files) {
-            console.log("thumbnail update")
             const thumbnail = req.files.thumbnailImage
             const thumbnailImage = await uploadImageToCloudinary(
                 thumbnail,
@@ -263,7 +259,7 @@ module.exports.getOwnerTurf = async (req, res) => {
 	try {
 	  const { turfId } = req.body
 	//   const userId = req.user.id
-	  const turfDetails = await turfSchema.findOne({
+	  const PreturfDetails = await turfSchema.findOne({
 		_id: turfId,
 	  })
 		.populate("owner")
@@ -275,15 +271,58 @@ module.exports.getOwnerTurf = async (req, res) => {
         })
 		.exec()
 
-		
-  
-  
-	  if (!turfDetails) {
+	  if (!PreturfDetails) {
 		return res.status(400).json({
 		  success: false,
 		  message: `Could not find course with id: ${turfId}`,
 		})
 	  }
+
+      const priceTimeId = PreturfDetails.priceTime._id;
+      const arr = PreturfDetails.priceTime.data;
+
+      for(let key of arr){
+        if(key.booked==1){
+            const now = new Date();
+            const currentHour = now.getHours()+1;
+            const curr_time = parseInt(currentHour, 10);
+            let turf_time = parseInt(key.time,10);
+
+            if(turf_time!=10 && turf_time!=11 && turf_time!=12){
+                turf_time=turf_time+12;
+            }
+
+            if(curr_time>turf_time){
+                key.booked=0;
+            }
+
+        }
+      }
+
+      const newPriceTimeDetails = await priceTimeSchema.findByIdAndUpdate(priceTimeId,{data:arr},{new:true});
+
+    //   console.log("updatedPriceTimeDetails: ",newPriceTimeDetails);
+
+      const turfDetails = await turfSchema.findOne({
+		_id: turfId,
+	  })
+		.populate("owner")
+		.populate("priceTime")
+        .populate({                    //only populate user name and image
+            path:"reviews",
+            populate:{path:"user"
+            ,select:"firstName lastName accountType image"}
+        })
+		.exec()
+
+        if (!turfDetails) {
+            return res.status(400).json({
+              success: false,
+              message: `Could not find course with id: ${turfId}`,
+            })
+          }
+
+        // console.log("updatedTurfDetails: ",turfDetails.priceTime.data);
   
 	  return res.status(200).json({
 		success: true,
@@ -376,5 +415,3 @@ module.exports.deleteTurf = async (req, res) => {
         })
     }
 }
-
-

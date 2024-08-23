@@ -6,15 +6,14 @@ const { default: mongoose } = require("mongoose");
 const crypto = require("crypto");
 const turfSchema = require("../models/Turf");
 const userPriceHistorySchema = require("../models/UserPriceHistory");
+const priceTimeSchema=require("../models/PriceTime");
 
 
 module.exports.capturePayment = async (req, res) => {
     //get courseId and UserID
     //validation
     //valid courseID
-    console.log("activated");
     try {
-        console.log("turf: ", req.body);
         const { turf, turfprice } = req.body;
         const userId = req.user.id;
         if (!turf) {
@@ -25,7 +24,7 @@ module.exports.capturePayment = async (req, res) => {
         };
 
         // let totalAmount = turfprice;
-        let totalAmount = 1;
+        let totalAmount = turfprice;
 
 
 
@@ -59,7 +58,6 @@ module.exports.capturePayment = async (req, res) => {
         try {
             //initiate the payment using razorpay
             const paymentResponse = await instance.orders.create(options);
-            console.log("payment", paymentResponse);
             //return response
             return res.status(200).json({
                 success: true,
@@ -92,8 +90,6 @@ module.exports.capturePayment = async (req, res) => {
 //verify the signature
 module.exports.verifySignature = async (req, res) => {
     //get the payment details
-    console.log("verify payment");
-    console.log("req.body: ", req.body);
     const { razorpay_payment_id, razorpay_order_id, razorpay_signature } = req.body;
     const { turf, amount, time } = req.body;
     const userId = req.user.id;
@@ -108,7 +104,7 @@ module.exports.verifySignature = async (req, res) => {
 
     let body = razorpay_order_id + "|" + razorpay_payment_id;
 
-    const enrolleStudent = async (turf, userId) => {
+    const enrolleCustomer = async (turf, userId) => {
         if (!turf || !userId) {
             return res.status(400).json({
                 success: false,
@@ -116,9 +112,8 @@ module.exports.verifySignature = async (req, res) => {
             });
         }
         try {
-            //update the course
+            //update the turf
 
-            console.log("verify turf=", turf);
 
             const History = await userPriceHistorySchema.create({
                 price: amount,
@@ -142,20 +137,18 @@ module.exports.verifySignature = async (req, res) => {
                 { _id: turf },
                 {
                     $set: {
-                        price: price,
-                        time: amount
+                        price: amount,
+                        time: time
                     }
                 }, { new: true }
             )
             // await user.save();
 
-            console.log("user: ", user);
 
 
 
             //send email
             const recipient = await userSchema.findById(userId);
-            console.log("recipient=>", recipient);
 
             return res.status(200).json({
                 success: true,
@@ -176,7 +169,7 @@ module.exports.verifySignature = async (req, res) => {
         //verify the signature
         const generatedSignature = crypto.createHmac("sha256", process.env.RAZORPAY_SECRET).update(body.toString()).digest("hex");
         if (generatedSignature === razorpay_signature) {
-            await enrolleStudent(turf, userId);
+            await enrolleCustomer(turf, userId);
         }
 
     }
@@ -197,8 +190,9 @@ module.exports.verifySignature = async (req, res) => {
 //send email
 
 module.exports.sendPaymentSuccessEmail = async (req, res) => {
-    const { amount, paymentId, orderId } = req.body;
+    const { amount, paymentId, orderId,turf,time} = req.body;
     const userId = req.user.id;
+
     if (!amount || !paymentId) {
         return res.status(400).json({
             success: false,
@@ -206,6 +200,22 @@ module.exports.sendPaymentSuccessEmail = async (req, res) => {
         });
     }
     try {
+
+        const turfDetails = await turfSchema.findById(turf);
+
+        
+        const priceTimeDetails = await priceTimeSchema.findById(turfDetails.priceTime);
+        const obj = priceTimeDetails.data;
+
+        for(let key of obj){
+            if(key.time==time){
+                key.booked=1;
+            }
+        }
+
+        const update = {data:obj};
+        await priceTimeSchema.findByIdAndUpdate(turfDetails.priceTime,update,{new:true});
+
         const userDetails = await userSchema.findById(userId);
         await mailSender(
             userDetails.email,

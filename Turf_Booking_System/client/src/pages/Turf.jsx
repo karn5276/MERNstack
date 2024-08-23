@@ -2,32 +2,27 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useParams } from 'react-router-dom';
-// import { fetchCourseDetails } from '../services/operations/courseDetailsAPI';
 import { getFullDetailsOfTurf } from '../services/operation/TurfDetailsAPI';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { buyCourse } from '../services/operation/ownerFeature';
-// import RatingStars from '../Components/common/RatingStars';
 import RatingStars from '../components/common/RatingStars';
 import GetAvgRating from '../utils/avgRating';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 import { BsGlobe } from 'react-icons/bs';
 import { FaShareSquare } from 'react-icons/fa';
-import { IoVideocamOutline } from 'react-icons/io5';
 import { ACCOUNT_TYPE } from '../utils/constants';
-import { FaChevronDown } from 'react-icons/fa';
 import { FaRupeeSign } from "react-icons/fa";
 import { setTime } from '../slices/paymenySlice';
 import Spinner from '../components/common/spinner/Spinner';
 
 const Turf = () => {
     const { token } = useSelector((state) => state.auth);
-    const { user, profileImage } = useSelector((state) => state.profile);
+    const { user } = useSelector((state) => state.profile);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    // const { courseId } = useParams();
     const { turfId } = useParams();
 
     const [turfDetails, setTurfDetail] = useState(null);
@@ -37,11 +32,29 @@ const Turf = () => {
     const [activeIndex, setActiveIndex] = useState(null);
     const { time } = useSelector((state) => state.payment);
     const [loading, setloading] = useState(false);
+    const [booked , setBooked] = useState(null);
 
 
     const handelPayment = () => {
         if (token) {
 
+            if(time){
+                let turf_time = parseInt(time);
+
+                if(turf_time!==10 && turf_time!==11 && turf_time!==12){
+                    turf_time=turf_time+12;
+                }
+
+                const currentHour = new Date().getHours();
+
+                if(currentHour>turf_time){
+                    return toast.error("Time's up! Book the turf for this time tomorrow!")
+                }
+            }
+
+            if(booked===1){
+                return toast.error("Turf Already Booked For Given Time");
+            }
             if (!price) {
                 toast.error("Please select the time");
                 return;
@@ -79,8 +92,16 @@ const Turf = () => {
     }, [turfDetails?.reviews]);
 
     const timeHandler = (timePrice, index) => {
+
+        if(timePrice.booked===1){
+            setBooked(1);
+        }
+        else{
+            setBooked(null);
+        }
         setPrice(timePrice.price);
         setActiveIndex(index);
+
         dispatch(setTime(timePrice.time));
     }
 
@@ -158,10 +179,10 @@ const Turf = () => {
                                 {
                                     timePrices && (
                                         timePrices.map((timePrice, index) => (
-                                            <div key={index} onClick={() => timeHandler(timePrice, index)} className={`rounded-md border-2 cursor-pointer border-green-500 px-1 md:px-6 py-2 ${index === activeIndex ? ("bg-green-500") : ("")}`}>
-                                                <p className={`${index === activeIndex ? ("text-white") : ("text-green-500")} `}>{timePrice.time}
+                                            <div key={index} onClick={() => timeHandler(timePrice, index)} className={`rounded-md border-2 cursor-pointer border-green-500 px-1 md:px-6 py-2 ${index === activeIndex ? ("bg-green-500") : ("")} ${timePrice?.booked===1? (" border-orange-500"):("border-green-500")} ${index === activeIndex && timePrice?.booked===1 ? ("bg-orange-500 text-white") : ("")}`}>
+                                                <p className={`${index === activeIndex ? ("text-white") : ("text-green-500")} ${timePrice?.booked===1? ("text-orange-500"):("text-green-500")}`}>{timePrice.time}
                                                     {
-                                                        (parseInt(timePrice.time.split(':')[0]) == 10) || (parseInt(timePrice.time.split(':')[0]) == 11) ? (<span> PM</span>) : (<span> AM</span>)
+                                                        (parseInt(timePrice.time.split(':')[0]) === 10) || (parseInt(timePrice.time.split(':')[0]) === 11) ? (<span> PM</span>) : (<span> AM</span>)
                                                     }</p>
                                             </div>
                                         ))

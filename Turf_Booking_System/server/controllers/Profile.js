@@ -68,10 +68,8 @@ module.exports.getBuyTurf = async (req, res) => {
 
         const userId = req.user.id;
 
-        console.log("pohachalo");
 
         const userDetails = await userSchema.findById({ _id: userId });
-        console.log("userDetails: ", userDetails);
 
         if (!userDetails) {
             return res.status(401).json({
@@ -90,7 +88,6 @@ module.exports.getBuyTurf = async (req, res) => {
             },
         }).exec();
 
-        console.log("buy Turf: ", BuyTurfs);
 
         return res.status(200).json({
             success: true,
@@ -121,7 +118,6 @@ exports.updateDisplayPicture = async (req, res) => {
             });
         }
         const image = req.files.pfp;
-        console.log("profile image: ", image);
         if (!image) {
             return res.status(404).json({
                 success: false,
@@ -134,7 +130,6 @@ exports.updateDisplayPicture = async (req, res) => {
         );
         const updatedImage = await userSchema.findByIdAndUpdate({ _id: id }, { image: uploadDetails.secure_url }, { new: true });
 
-        console.log("updatedImage: ", updatedImage);
         res.status(200).json({
             success: true,
             message: "Image updated successfully",
@@ -155,7 +150,6 @@ module.exports.TotalEarning = async(req,res)=>{
         const id = req.user.id;
         
         const turfs = await turfSchema.find({owner:id});
-        console.log("OwnerTurfData: ",turfs);
         const turfDetails = await Promise.all( turfs.map(async(turf)=>{
             let totalRevenue=0;
             const histories=await historySchema.find({turfId:turf._id}).populate("turfId");
@@ -176,7 +170,6 @@ module.exports.TotalEarning = async(req,res)=>{
 			return turfStats;
         }));
 
-        console.log("turfDetails: ",turfDetails);
 
 
         res.status(200).json({

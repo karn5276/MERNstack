@@ -13,6 +13,7 @@ import Spinner from '../../../../common/spinner/Spinner';
 function TurfBuilder() {
   const [time, setTime] = useState('12:00');
   const [price, setPrice] = useState('00');
+  const booked = 0;
   const [data, setData] = useState([]);
   const { priceTime, turf, editTurf, priceTimeId, finalData } = useSelector((state) => state.turf);
   const dispatch = useDispatch();
@@ -25,10 +26,10 @@ function TurfBuilder() {
   const addItem = () => {
     if (time && price) {
 
-      const newData = [...data, { time, price }];
+      const newData = [...data, { time, price,booked }];
       setData(newData);
       if (editTurf) {
-        const newpriceTime = [...priceTime, { time, price }];
+        const newpriceTime = [...priceTime, { time, price,booked }];
         dispatch(setPriceTime(newpriceTime));
       }
     }
