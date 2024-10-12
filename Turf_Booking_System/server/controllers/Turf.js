@@ -168,7 +168,6 @@ module.exports.editPriceTime = async(req,res)=>{
 module.exports.editTurf = async (req, res) => {
     try {
 
-        const userId = req.user.id;
         const { turfId } = req.body;
 
         const findTurf = await turfSchema.findById({ _id: turfId });
@@ -179,7 +178,6 @@ module.exports.editTurf = async (req, res) => {
                 message: "Turf Not Found"
             })
         }
-
         const updates = req.body;
 
 
