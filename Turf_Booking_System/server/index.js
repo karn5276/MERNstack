@@ -21,7 +21,7 @@ const port = process.env.PORT || 4050;
 const cookieParser=require("cookie-parser");
 
 app.use(cookieParser());
-app.use(express.json());
+app.use(express.json()); // parse client json data to js object.
 
 app.use(cors());
 
